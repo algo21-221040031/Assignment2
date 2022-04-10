@@ -1,17 +1,73 @@
-import tensorflow as tf
+from keras.optimizers import adam_v2
+import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
+from sklearn import metrics
+from DataProcess import *
+from Model import *
+
+originalData = pd.read_csv("../Data/601988.SH.csv")
+originalData.index = pd.to_datetime(
+    originalData['trade_date'], format='%Y%m%d')
+#data1 = data1.drop(['ts_code', 'trade_date', 'turnover_rate', 'volume_ratio', 'pb', 'total_share', 'float_share', 'free_share'], axis=1)
+originalData = originalData.loc[:, [
+    'open', 'high', 'low', 'close', 'vol', 'amount']]
+data_yuan = originalData
+
+residuals = pd.read_csv('./ARIMA_residuals1.csv')
+residuals.index = pd.to_datetime(residuals['trade_date'])
+residuals.pop('trade_date')
+data1 = pd.merge(originalData, residuals, on='trade_date')
+data = data1.iloc[1:3500, :]
+data2 = data1.iloc[3500:, :]
+
+TIME_STEPS = 20
+
+data, normalize = NormalizeMult(data)
+print('#', normalize)
+pollution_data = data[:, 3].reshape(len(data), 1)
+
+train_X, _ = CreateDataset(data, TIME_STEPS)
+_, train_Y = CreateDataset(pollution_data, TIME_STEPS)
+
+print(train_X.shape, train_Y.shape)
+
+m = AttentionModel(INPUT_DIMS=7)
+m.summary()
+adam = adam_v2.Adam(learning_rate=0.01)
+m.compile(optimizer=adam, loss='mse')
+history = m.fit([train_X], train_Y, epochs=50,
+                batch_size=32, validation_split=0.1)
+m.save("./stock_model.h5")
+np.save("stock_normalize.npy", normalize)
+
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Training and Validation Loss')
+plt.legend()
+plt.show()
+
+# normalize = np.load("normalize.npy")
+# loadmodelname = "model.h5"
 
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class Config:
+    def __init__(self):
+        self.dimname = 'close'
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+config = Config()
+name = config.dimname
+# normalize = np.load("normalize.npy")
+y_hat, y_test = PredictWithData(data2, data_yuan, name, 'stock_model.h5', 7)
+y_hat = np.array(y_hat, dtype='float64')
+y_test = np.array(y_test, dtype='float64')
+EvaluationMetrics(y_test, y_hat)
+time = pd.Series(data1.index[3499:])
+plt.plot(time[1:], y_test, label='True')
+plt.plot(time[1:], y_hat, label='Prediction')
+plt.title('Hybrid model prediction')
+plt.xlabel('Time', fontsize=12, verticalalignment='top')
+plt.ylabel('Price', fontsize=14, horizontalalignment='center')
+plt.legend()
+plt.show()
