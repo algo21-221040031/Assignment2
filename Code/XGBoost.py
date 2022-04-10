@@ -13,6 +13,7 @@ if __name__ == "__main__":
     close = data.pop('close')
     data.insert(5, 'close', close)
 
+    # 对ARIMA模型的残差做进一步分析
     data1 = data.iloc[3501:, 5]
     residuals = pd.read_csv('./ARIMA_residuals1.csv')
     residuals.index = pd.to_datetime(residuals['trade_date'])
@@ -28,6 +29,8 @@ if __name__ == "__main__":
 
     train, test = PrepareData(merge_data, n_test=180, n_in=6, n_out=1)
 
+
+    # 使用XGBoost对数据建模
     y, yhat = WalkForwardValidation(train, test)
     plt.figure(figsize=(10, 6))
     plt.plot(time, y[1:], label='Residuals')
@@ -37,6 +40,7 @@ if __name__ == "__main__":
     plt.ylabel('Residuals', fontsize=14, horizontalalignment='center')
     plt.legend()
     plt.show()
+
 
     finalpredicted_stock_price = [i + j for i, j in zip(Lt, yhat)]
     #print('final', finalpredicted_stock_price)
