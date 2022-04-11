@@ -9,4 +9,7 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 * Tensorflow 2.8.0
 # File Description
 1. DataProcess.py contains the data processing functions, including the ACF test function, ACF plot function, Data split function and Normalizing function, which should be runned firstly.
-2. 
+2. ARIMA.py contains the arima modeling functions. Two files: ARIMA.csv and residuals.csv will be created and used in the later modelling process, which should be runned secondly.
+3. Models.py contains the modelling functions of LSTM and XGBoost, which should be runned thirdly.
+4. LSTM.py and XGBoost.py apply LSTM and XGBoost on the specific data set separately.
+5. Main.py is the total file that gathers all the models and applies on the given data set.
