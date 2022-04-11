@@ -7,4 +7,6 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 # Language Required
 * Python 3.9
 * Tensorflow 2.8.0
-
+# File Description
+1. DataProcess.py contains the data processing functions, including the ACF test function, ACF plot function, Data split function and Normalizing function, which should be runned firstly.
+2. 
