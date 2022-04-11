@@ -3,7 +3,8 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 # Data
 * Stock Target: Bank of China, 601988.SH.
 * Time period: Start: 20070101, End: 20220331.
-* Data Source: WIND
+* Data Source: WIND.
 # Language Required
 * Python 3.9
-* 
+* Tensorflow 2.8.0
+
