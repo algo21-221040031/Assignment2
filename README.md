@@ -15,4 +15,4 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 5. main.py is the total file that gathers all the models and applies on the given data set.
 # Conclusion
 1. Time Series Modelling
-![Arima](Result/ACF.png)
+![Arima](Figures/ACF.png)
