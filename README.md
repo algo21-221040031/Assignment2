@@ -25,3 +25,11 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSTM and
 ![ACF](Figures/ACF.png)
 * The Arima Stock Price Prediction
 ![Arima](Figures/ARIMAStockPrediction.png)
+3. LSTM Modelling
+* LSTM Prediction
+![LSTM](Figures/LSTM.png)
+* BiLSTM Prediction
+![LSTM](Figures/BiLSTM.png)
+4. ARIMA + XGBoost
+![XGBoost](Figures/ARIMA+XGBoost.png)
+5. With strong ability of modeling nonlinear model ability, the hybrid model can combine the strength of time series model and neural networks, thus better predicting the stock price.
