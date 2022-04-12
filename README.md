@@ -14,5 +14,14 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 4. LSTM.py and XGBoost.py apply LSTM and XGBoost on the specific data set separately.
 5. main.py is the total file that gathers all the models and applies on the given data set.
 # Conclusion
-1. Time Series Modelling
-![Arima](Figures/ACF.png)
+1. Data Description
+The stock price time series is shown as:
+![ClosePrice](Figures/ClosePrice.png)
+and applying the first diff and second diff:
+![FirstOrderDiff](Figures/FirstOrderDiff.png)
+![SecondOrderDiff](Figures/SecondOrderDiff.png)
+2. Time Series Modelling
+2.1 The ACF plot
+![ACF](Figures/ACF.png)
+2.2 The Arima Stock Price Prediction
+![Arima](Figures/ARIMAStockPrediction.png)
