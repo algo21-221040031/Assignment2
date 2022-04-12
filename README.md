@@ -33,3 +33,5 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSTM and
 4. ARIMA + XGBoost
 ![XGBoost](Figures/ARIMA+XGBoost.png)
 5. With strong ability of modeling nonlinear model ability, the hybrid model can combine the strength of time series model and neural networks, thus better predicting the stock price.
+# Reference
+https://arxiv.org/abs/2204.02623
