@@ -1,5 +1,5 @@
 # Introduction
-Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and XGBoost Hybrid Model for Stock Prediction.", whose model integrated the time-series model, the convolutional neural networks with attention mechanism, the LSTM network and XGBoost regressor in a non-linear relationship, and improved the prediction accuracy.
+Assignment 2 tried to represent the research paper "Attention-Based CNN-LSTM and XGBoost Hybrid Model for Stock Prediction.", whose model integrated the time-series model, the convolutional neural networks with attention mechanism, the LSTM network and XGBoost regressor in a non-linear relationship, and improved the prediction accuracy.
 # Data
 * Stock Target: Bank of China, 601988.SH.
 * Time period: Start: 20070101, End: 20220331.
@@ -15,13 +15,13 @@ Assignment 2 tried to represent the research paper "Attention-Based CNN-LSYM and
 5. main.py is the total file that gathers all the models and applies on the given data set.
 # Conclusion
 1. Data Description
-The stock price time series is shown as:
+* The stock price time series is shown as:
 ![ClosePrice](Figures/ClosePrice.png)
-and applying the first diff and second diff:
+* Applying the first diff and second diff:
 ![FirstOrderDiff](Figures/FirstOrderDiff.png)
 ![SecondOrderDiff](Figures/SecondOrderDiff.png)
 2. Time Series Modelling
-2.1 The ACF plot
+* The ACF plot
 ![ACF](Figures/ACF.png)
-2.2 The Arima Stock Price Prediction
+* The Arima Stock Price Prediction
 ![Arima](Figures/ARIMAStockPrediction.png)
